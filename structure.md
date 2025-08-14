@@ -1,0 +1,32 @@
+```
+└── 📁PytestContacts
+    └── 📁biz
+        ├── contacts.py
+        ├── token.py
+    └── 📁case
+        └── 📁api
+            ├── test_api_contacts.py
+        └── 📁app
+        └── 📁web
+    └── 📁data
+        └── 📁schema
+            ├── contacts_schema_invalid.json
+            ├── contacts_schema.json
+    └── 📁doc
+        └── 📁case
+            ├── contacts_api.md
+        └── 📁plan
+            ├── contacts_api.md
+        └── 📁report
+            └── 📁html
+                ├── test_report.html
+            └── 📁json
+        └── 📁requirement
+            ├── contacts_api.md
+    └── 📁util
+        ├── json_util.py
+    ├── conftest.py
+    ├── dev.bat
+    ├── pytest.ini
+    └── requirements.txt
+```

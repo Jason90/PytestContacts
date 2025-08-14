@@ -2,3 +2,4 @@
 /.vscode/
 /report/json/
 /report/html/
+__pycache__/
