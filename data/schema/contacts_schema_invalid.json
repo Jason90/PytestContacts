@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Unauthorized Error Response Schema",
+  "description": "Schema for validating unauthorized error responses",
+  "type": "object",
+  "required": ["message", "error"],
+  "additionalProperties": false,
+  "properties": {
+    "message": {
+      "description": "Short error message indicating unauthorized access",
+      "type": "string",
+      "enum": ["Unauthorized"],
+      "examples": ["Unauthorized"]
+    },
+    "error": {
+      "description": "Detailed error explanation",
+      "type": "string",
+      "enum": ["Valid JWT token required"],
+      "examples": ["Valid JWT token required"]
+    }
+  }
+}
+    

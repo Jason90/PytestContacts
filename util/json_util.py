@@ -1,0 +1,19 @@
+import json
+from jsonschema import validate, ValidationError
+
+
+def load_schema(schema_path):
+    try:
+        with open(schema_path, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Schema file not found: {schema_path}")
+    except json.JSONDecodeError:
+        raise ValueError(f"The schema file format is incorrect: {schema_path}")
+
+def validate_json(data, schema):
+    try:
+        validate(instance=data, schema=schema)
+    except ValidationError as e:
+        raise ValueError(f"JSON validation error: {e.message}")
+    return True
