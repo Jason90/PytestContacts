@@ -20,4 +20,17 @@
 ## Todo List
 - [ ] 1. Add logs and detailed exception information to facilitate debugging.
 - [ ] 2. Centralized management of configuration items
-- [ ] 3. Read test data from the database
+- [ ] 3. Read test data from yaml, csv and database
+- [ ] 4. Determine which schema to read based on URL + CRUD + order
+- [ ] 5. Automatically send the test report after the test is executed.
+- [ ] 6. url and payload should be in a config file
+
+
+
+## Challenges
++ AOP Logger by Decorator
++ Performance, stress test
++ Jenkins integration
++ Batch modification of parameters, batch selection of cases, batch execution
++ Paging
++ Contacts CRUD, org 

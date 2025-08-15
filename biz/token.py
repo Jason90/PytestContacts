@@ -22,7 +22,6 @@ def get():
         _token_cache["expires_at"] is None or 
         now >= _token_cache["expires_at"] - timedelta(seconds=60)):
         
-        # 
         new_token_data = get_new()
         _token_cache["token"] = new_token_data["token"]
         _token_cache["expires_at"] = new_token_data["expires_at"]
