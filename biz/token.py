@@ -2,9 +2,8 @@ import pytest
 import requests
 from datetime import datetime, timedelta
 
-
 TIMEOUT=10
-TOKEN_URL="https://qv77wuaaytru4gzchjj7bhewhq0ukysc.lambda-url.us-west-2.on.aws/auth" #todo url and payload should be in a config file
+TOKEN_URL="https://qv77wuaaytru4gzchjj7bhewhq0ukysc.lambda-url.us-west-2.on.aws/auth"
 
 # Authentication payload
 PAYLOAD = {"apiKey": "test-key-001"}
@@ -49,4 +48,4 @@ def get_new():
 
 # Get an invalid token for testing purposes
 def get_invalid():
-    return {"token": "Invalid token"}
+    return "Invalid token"
