@@ -1,0 +1,6 @@
+// {type:class}
+[case||test_abc()]-.->[business|URL|get();post();put();delete()]
+
+[business]-.->[util||log;   json   ;file]
+
+[business]-.->[data||schema;json;xml]

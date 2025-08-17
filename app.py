@@ -1,6 +1,17 @@
 import logging
 import requests
 from util.log_util import LoggerFactory
+from util.email_util import send_email
+
+
+if __name__ == '__main__':
+    sender_email = 'zhhot@sohu.com'
+    sender_password = '2SJC9PK4DL'
+    receiver_email ='zhhot@hotmail.com'
+    subject = 'Pytest Test Report'
+    body = 'Please find the attached Pytest test report.'
+    attachment_path = 'doc/report/html/test_report.html'
+    send_email(sender_email, sender_password, receiver_email, subject, body, attachment_path)
 
 
 # 1. Initialize logging configuration (once globally)
@@ -51,6 +62,6 @@ def test_api_service():
         print(f"Operation failed: {e}")
 
 
-if __name__ == "__main__":
-    test_api_service()
+# if __name__ == "__main__":
+#     test_api_service()
     

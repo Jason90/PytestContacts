@@ -6,6 +6,11 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+@pytest.mark.api
+def test_sample ():
+    logger.info("Sample test case to ensure logging is working")
+    pass
+
 @pytest.mark.smoke
 @pytest.mark.api
 def test_get_contacts():

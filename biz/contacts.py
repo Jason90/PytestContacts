@@ -18,12 +18,12 @@ def get(token):
 
 # Validate the JSON structure against the schema
 def validate_schema(contacts):
-    schema = json_util.load_schema("data/schema/contacts_schema.json")
+    schema = json_util.load_schema("contacts_schema.json")
     
     return json_util.validate_json(contacts, schema)
 
 # Validate the JSON structure against the invalid schema
 def validate_invalid_schema(contacts):
-    schema = json_util.load_schema("data/schema/contacts_schema_invalid.json")
+    schema = json_util.load_schema("contacts_schema_invalid.json")
     
     return json_util.validate_json(contacts, schema)
