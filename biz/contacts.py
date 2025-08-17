@@ -2,12 +2,10 @@
 import requests
 import pytest
 from util import json_util
+from config import CONTACTS_URL, TIMEOUT
 
 
-TIMEOUT=10
-CONTACTS_URL = "https://qv77wuaaytru4gzchjj7bhewhq0ukysc.lambda-url.us-west-2.on.aws/contacts"
-
-# Get contacts from the API using the provided token
+# Get contacts from the API using the provided token.
 def get(token):
     headers = {
         "Authorization": f"Bearer {token}"

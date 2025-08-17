@@ -33,7 +33,7 @@
 
 ## Todo List
 - [x] 1. Add logs and detailed exception information
-- [ ] 2. Centralized management of configuration items
+- [x] 2. Centralized management of configuration items
 - [ ] 3. Read test data from yaml, csv and database
 - [x] 4. Automatically send the test report after execution
 

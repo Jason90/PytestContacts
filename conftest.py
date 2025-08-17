@@ -28,10 +28,21 @@ def manage_report():
 
 @pytest.hookimpl(trylast=True)  # Ensure this hook runs after all report generation
 def pytest_sessionfinish(session):
+    # Condition 1: Ensure report file exists and is not empty
+    if not (os.path.exists(REPORT_PATH) and os.path.getsize(REPORT_PATH) > 0):
+        print(f"Skipping email: Report file does not exist or is empty ({REPORT_PATH})")
+        return
+
+    # Condition 2: Check if any test cases were actually executed
+    test_counts = session.testscollected
+    if test_counts == 0:
+        print("Skipping email: No test cases were executed")
+        return
+    
     # Send email after entire test session completes (report is generated)
     if os.path.exists(REPORT_PATH):
         sender_email = 'zhhot@sohu.com'
-        sender_password = '2SJC9PK4DL'  # Note: In production, use environment variables
+        sender_password =  os.getenv("EMAIL_PASSWORD") 
         receiver_email = 'zhhot@hotmail.com'
         subject = 'Pytest Test Report'
         body = 'Please find the attached Pytest test report.'
