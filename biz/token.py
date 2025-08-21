@@ -1,10 +1,10 @@
 import pytest
 import requests
 from datetime import datetime, timedelta
-from config import TOKEN_URL, TIMEOUT
+from config import TOKEN_URL, HTTP_TIMEOUT, PAYLOAD
+import logging
 
-# Authentication payload
-PAYLOAD = {"apiKey": "test-key-001"}
+logger = logging.getLogger(__name__)
 
 # Cache for the token to avoid frequent requests
 _token_cache = {
@@ -20,16 +20,16 @@ def get():
         _token_cache["expires_at"] is None or 
         now >= _token_cache["expires_at"] - timedelta(seconds=60)):
         
-        new_token_data = get_new()
+        new_token_data = _get_new()
         _token_cache["token"] = new_token_data["token"]
         _token_cache["expires_at"] = new_token_data["expires_at"]
-        print(f"New token obtained, will expire at {_token_cache['expires_at']}")
+        logger.info("New token obtained, will expire at %s", _token_cache["expires_at"])
     
     return _token_cache["token"]
 
 # Get new token from the API
-def get_new():
-    response = requests.post(TOKEN_URL, json=PAYLOAD)
+def _get_new():
+    response = requests.post(TOKEN_URL, json=PAYLOAD, timeout=HTTP_TIMEOUT)
     
     response.raise_for_status()
     auth_data = response.json()

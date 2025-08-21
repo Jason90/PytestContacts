@@ -25,26 +25,28 @@
 - [x] 3. Write test cases
 - [x] 4. Postman to analyze request & response
 - [x] 5. Build API automation testing framework
-- [x] 6. Implement test code for token and contact API
-- [x] 7. Implement integrated testing of the 2 API based on fixture
-- [x] 8. Refactor project architecture to three - tier 
-- [x] 9. Use schema to verify JSON format response for contact API
-- [x] 10. Add edge test cases and security test cases
+- [x] 6. v1: Implement test code for token and contact API
+- [x] 7. v1: Integrate the testing of the 2 APIs based on fixtures
+- [x] 8. v2: Refactor project architecture to three - tier 
+- [x] 9. v2: Use schema to verify JSON format response
+- [x] 10. v3: Add edge test cases and security test cases
+
 
 ## Todo List
-- [x] 1. Add logs and detailed exception information
-- [x] 2. Centralized management of configuration items
-- [ ] 3. Read test data from yaml, csv and database
-- [x] 4. Automatically send the test report after execution
+- [x] 1. Centralized management of configuration items
+- [x] 2. Add logs and detailed exception information
+- [x] 3. Automatically send the test report after execution
 
 
 ## Challenges
-+ AI test
 + Performance Test: Load & Stress
 + Jenkins integration
 + AOP Logger by Decorator
 + Contacts CRUD, org ,Paging
-+ Determine which schema to read based on URL + CRUD + order
++ Read test data from database
++ Determine which schema to read based on URL + CRUD + order( use parametrize)
 + Web test by Selenium 
 + App test by Appum 
 + Screen capture, pic and video
++ AI test
++ Use interface to define get, post, delete, and put

@@ -1,8 +1,7 @@
 
 import requests
-import pytest
 from util import json_util
-from config import CONTACTS_URL, TIMEOUT
+from config import CONTACTS_URL, HTTP_TIMEOUT
 
 
 # Get contacts from the API using the provided token.
@@ -10,7 +9,7 @@ def get(token):
     headers = {
         "Authorization": f"Bearer {token}"
     }
-    response = requests.get(CONTACTS_URL, headers=headers, timeout=TIMEOUT)
+    response = requests.get(CONTACTS_URL, headers=headers, timeout=HTTP_TIMEOUT)
     
     return response
 

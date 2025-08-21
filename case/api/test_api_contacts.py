@@ -6,10 +6,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-@pytest.mark.api
-def test_sample ():
-    logger.info("Sample test case to ensure logging is working")
-    pass
 
 @pytest.mark.smoke
 @pytest.mark.api
@@ -42,6 +38,16 @@ def test_get_contacts_invalid_token():
     assert biz.contacts.validate_invalid_schema(contacts.json())
  
 
+
+
+
+
+
+
+
+
+
+
 @pytest.mark.security
 @pytest.mark.api
 @pytest.mark.parametrize("expected_status,token", 
@@ -53,7 +59,7 @@ def test_get_contacts_invalid_token():
   
         # 2. Special character tests
         (401, "!@#$%^&*()[]\\{}|;':\"\",./<>?"),
-        (401, "ñáéíóú"),
+        (401, "ñáéíóú"), 
         # (401, "中文双字节字符"),  #Invalid use case # Todo: UnicodeEncodeError: 'latin-1' codec can't encode characters in position 18-24: ordinal not in range(256)
 
         # 3. Data type tests
@@ -122,3 +128,8 @@ def test_get_contacts_with_invalid_token(expected_status,token):
         else:
             assert biz.contacts.validate_invalid_schema(data)
     
+
+@pytest.mark.api
+def test_sample ():
+    logger.info("Sample test case to ensure logging is working")
+    pass

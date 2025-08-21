@@ -31,17 +31,17 @@ PAT: Python Automation(Art) Test
 
 ## 5. Goals & Principles
 
-Maintainable: Extensible, Configurable, Reusable 
+Reusable, Configurable, Extensible      ==>  Maintainable
 
 ```mermaid
     graph LR
 
     A1-->B1(Separation principle)
 
-    B1-->C2(Project Structure)
-    B1-->C3(Biz logic & Test case)
-    B1-->C4(Biz logic & Test data)
-    B1-->C5(Biz logic & Utility)
+    B1-->C2(Biz logic & Test case)
+    B1-->C3(Biz logic & Test data)
+    B1-->C4(Biz logic & Utility)
+    B1-->C5(Project Structure)
 
     C2-->D2(Three - Tier Architecture)
     C3-->D2

@@ -1,54 +1,47 @@
 import os
 import pytest
-import requests
 from util import file_util
 from util.email_util import send_email
+import logging
 
-# Get an authentication token for API requests, obsolete, use token.get() instead
-@pytest.fixture(scope='session')
-def get_auth_token():
-    url="https://qv77wuaaytru4gzchjj7bhewhq0ukysc.lambda-url.us-west-2.on.aws/auth"
-    payload = {"apiKey": "test-key-001"}
-    response = requests.post(url, json=payload)
-    response.raise_for_status()
-    if response.status_code == 200:
-        return response.json().get("token")
-    #todo handle expired token
-
+logger = logging.getLogger(__name__)
 
 # Global variable to store report path (shared between fixture and hook function)
 REPORT_PATH = os.path.join("doc", "report", "html", "test_report.html")
 
 @pytest.fixture(scope='session', autouse=True)
 def manage_report():
-    # Clean report directory before tests
+    logger.info("Setting up report directory, cleaning if necessary")
     report_dir = os.path.join("doc", "report")
     file_util.clean_directory(report_dir)
-    yield  # Test execution phase
+    
+    yield  # This will run after all tests complete
+    
+    # If you want to send the email after all tests are done, don't do it here. 
+    # Report generation and email sending should be handled in a hook.
 
-@pytest.hookimpl(trylast=True)  # Ensure this hook runs after all report generation
+@pytest.hookimpl(trylast=True) 
 def pytest_sessionfinish(session):
+    logger.info("Session finished, preparing to send email with report")
     # Condition 1: Ensure report file exists and is not empty
     if not (os.path.exists(REPORT_PATH) and os.path.getsize(REPORT_PATH) > 0):
-        print(f"Skipping email: Report file does not exist or is empty ({REPORT_PATH})")
+        logger.warning(f"Skipping email: Report file does not exist or is empty: {REPORT_PATH}")
         return
 
     # Condition 2: Check if any test cases were actually executed
     test_counts = session.testscollected
     if test_counts == 0:
-        print("Skipping email: No test cases were executed")
+        logger.warning("Skipping email: No test cases were executed")
         return
     
     # Send email after entire test session completes (report is generated)
-    if os.path.exists(REPORT_PATH):
-        sender_email = 'zhhot@sohu.com'
-        sender_password =  os.getenv("EMAIL_PASSWORD") 
-        receiver_email = 'zhhot@hotmail.com'
-        subject = 'Pytest Test Report'
-        body = 'Please find the attached Pytest test report.'
-        send_email(sender_email, sender_password, receiver_email, subject, body, REPORT_PATH)
-    else:
-        print(f"Warning: Test report file not found at {REPORT_PATH}")
+    sender_email = 'zhhot@sohu.com'
+    sender_password =  os.getenv("EMAIL_PASSWORD") 
+    receiver_email = 'zhhot@hotmail.com'
+    subject = 'Pytest Test Report'
+    body = 'Please find the attached Pytest test report.'
+    send_email(sender_email, sender_password, receiver_email, subject, body, REPORT_PATH)
+
 
 
 
