@@ -1,0 +1,3 @@
+{
+  "Message": "Request must be smaller than 6291456 bytes for the InvokeFunction operation"
+}

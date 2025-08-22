@@ -2,7 +2,9 @@
 import requests
 from util import json_util
 from config import CONTACTS_URL, HTTP_TIMEOUT
+import logging
 
+logger=logging.getLogger(__name__)
 
 # Get contacts from the API using the provided token.
 def get(token):
@@ -14,13 +16,14 @@ def get(token):
     return response
 
 # Validate the JSON structure against the schema
-def validate_schema(contacts):
-    schema = json_util.load_schema("contacts_schema.json")
-    
-    return json_util.validate_json(contacts, schema)
-
-# Validate the JSON structure against the invalid schema
-def validate_invalid_schema(contacts):
-    schema = json_util.load_schema("contacts_schema_invalid.json")
-    
-    return json_util.validate_json(contacts, schema)
+def validate_response(response):
+    contentType = response.headers.get("Content-Type", "")
+    if("application/json" in contentType):
+        schema = json_util.load_schema(f"contacts_{response.request.method}_{response.status_code}.json")
+        
+        return json_util.validate_json(response.json(), schema)
+    else:
+        logger.warning("Response is not in JSON format. status_code=%s, contentType=%s",response.status_code,contentType)
+        logger.debug("Response text:", response.text)
+        
+        return True

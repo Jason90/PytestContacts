@@ -1,0 +1,2 @@
+INFO     biz.token:token.py:26 New token obtained, will expire at 2025-08-23 12:51:52.772458
+INFO     conftest:conftest.py:25 Session finished, preparing to send email with report

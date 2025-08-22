@@ -1,4 +1,5 @@
 from datetime import datetime
+import sys
 import biz.token
 import biz.contacts
 import pytest
@@ -6,53 +7,14 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-
-@pytest.mark.smoke
-@pytest.mark.api
-def test_get_contacts():
-    logger.info("Step 1: Get the authentication token")
-    token= biz.token.get()
- 
-    logger.info("Step 2: Make the GET request to fetch contacts")
-    contacts=biz.contacts.get(token)
- 
-    logger.info("Step 3: Validate the response status code")
-    assert contacts.status_code == 200
- 
-    logger.info("Step 4: Validate the JSON structure against the schema")
-    assert biz.contacts.validate_schema(contacts.json())
- 
-@pytest.mark.smoke
-@pytest.mark.api
-def test_get_contacts_invalid_token():
-    logger.info("Step 1: Get the authentication token")
-    token= biz.token.get_invalid()
-    
-    logger.info("Step 2: Make the GET request to fetch contacts")
-    contacts=biz.contacts.get(token)
- 
-    logger.info("Step 3: Validate the response status code")
-    assert contacts.status_code == 401
-    
-    logger.info("Step 4: Validate the JSON structure against the schema")
-    assert biz.contacts.validate_invalid_schema(contacts.json())
- 
-
-
-
-
-
-
-
-
-
-
-
 @pytest.mark.security
 @pytest.mark.api
 @pytest.mark.parametrize("expected_status,token", 
     [
-        #1. Null/missing value tests
+        # 0. Valid token test
+        (200, biz.token.get()),
+        
+        # 1. Null/missing value tests
         (401, ""),
         (401, " "),
         (401, None),
@@ -69,11 +31,11 @@ def test_get_contacts_invalid_token():
   
         # 4. Length boundary tests
         (401, "a" * 1),  
-        (401, "a" * (2**13)), 
-        (400, "a" * (2**16)),  # Todo: Whether the 400 error is reasonable needs to be confirmed. The maximum length of the http header
+        (413, "a" * 10893),     # 413 Payload Too Large, means request body is too large. Should be 431 Request Header Fields Too Large.
+        (400, "a" * (2**16+1)), # The maximum length of the http header：8KB–64KB. Should be 431 Request Header Fields Too Large.
     
         # 5. Security attack tests
-        (401, "<script>alert('XSS')</script>"),
+        (401, "<script>alert('XSS')</script>"), 
         (401, "' OR '1'='1"),    
         (401, "{{7*7}}"),
   
@@ -81,6 +43,9 @@ def test_get_contacts_invalid_token():
         (401, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UiLCJyb2xlIjoiUUEgQ2FuZGlkYXRlIiwiaWF0IjoxNzU1MjAxMjkxLCJleHAiOjE3NTUyODc2OTF9.f0Bs4FW2AAbniCQMtnWsjwN1_MlUYyLM2koZdfngDfc"),
       ],
     ids=[
+        # 0. Valid token test
+        "valid_token",
+        
         # 1. Null/missing value tests
         "empty_token",
         "whitespace_token",
@@ -97,9 +62,9 @@ def test_get_contacts_invalid_token():
         "datetime_object_token",
 
         # 4. Length boundary tests
-        "min_length_token(1_char)",
-        "long_token(2^13_chars)",
-        "extra_long_token(2^16_chars)",
+        "min_length_token",
+        "long_token",
+        "extra_long_token",
 
         # 5. Security attack tests
         "xss_injection_token",
@@ -110,24 +75,28 @@ def test_get_contacts_invalid_token():
         "expired_jwt_token"
     ]            
 )
-def test_get_contacts_with_invalid_token(expected_status,token):
+def test_get_contacts(expected_status,token):
     logger.info("Step 1: Make the GET request to fetch contacts")
-    contacts = biz.contacts.get(token)
+    response = biz.contacts.get(token)
  
     logger.info("Step 2: Validate the response status code")
-    assert contacts.status_code == expected_status
+    assert response.status_code == expected_status
     
-    if expected_status == 400:
-        logger.warning("400 Bad Request: The request was invalid, possibly due to a malformed token.")
-        logger.debug("Response text:", contacts.text)
-    else:
-        logger.info("Step 3: Validate the JSON structure against the schema")
-        data = contacts.json()
-        if expected_status == 200:
-            assert biz.contacts.validate_schema(data)
-        else:
-            assert biz.contacts.validate_invalid_schema(data)
+    logger.info("Step 3: Validate the JSON structure against the schema")
+    assert biz.contacts.validate_response(response)
+   
+
+@pytest.mark.api
+@pytest.mark.stress
+def test_get_contacts_batch():
     
+    for i in range(16320, 16384, 1): # range(2**13, 2**16, 2**10) #range(10893, 10992,1) 
+        token= "a" * i
+
+        response = biz.contacts.get(token)
+ 
+        logger.info("status_code=%s, token_length=%d", response.status_code, len(token))
+
 
 @pytest.mark.api
 def test_sample ():

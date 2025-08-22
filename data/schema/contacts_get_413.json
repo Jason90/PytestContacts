@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "InvokeFunction Request Size Exceeded Error Response",
+  "description": "Error response structure when request exceeds 6291456 bytes for the InvokeFunction operation",
+  "required": ["Message"],
+  "properties": {
+    "Message": {
+      "type": "string",
+      "description": "Error description message",
+      "const": "Request must be smaller than 6291456 bytes for the InvokeFunction operation"
+    }
+  },
+  "additionalProperties": false
+}
