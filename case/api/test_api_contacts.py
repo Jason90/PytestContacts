@@ -58,8 +58,9 @@ def test_get_contacts_invalid_token():
         (401, None),
   
         # 2. Special character tests
-        (401, "!@#$%^&*()[]\\{}|;':\"\",./<>?"),
-        (401, "ñáéíóú"), 
+        (401, "!@#$%^&*()`~-_=+[]{}|\\;:'\",.<>?/"),
+        (401, ''.join(chr(c) for c in range(128, 192))), #  latin_1 special symbols  (401, "€†‡ˆ‰‹Œ‘’“”•–—˜™›œ£¥©®")
+        (401, ''.join(chr(c) for c in range(192,256))),  # latin_1 accented characters (401, "ñáéíóú")
         # (401, "中文双字节字符"),  #Invalid use case # Todo: UnicodeEncodeError: 'latin-1' codec can't encode characters in position 18-24: ordinal not in range(256)
 
         # 3. Data type tests
@@ -88,7 +89,8 @@ def test_get_contacts_invalid_token():
 
         # 2. Special character tests
         "special_symbols_token",
-        "unicode_latin_extended_token",
+        "latin_special_symbols_token",
+        "latin_accented_characters_token",
         # "chinese_doublebyte_token",
 
         # 3. Data type tests
