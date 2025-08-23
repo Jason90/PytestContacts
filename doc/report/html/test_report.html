@@ -439,10 +439,10 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
 }
 </script>
     <h1>test_report.html</h1>
-    <p>Report generated on 22-Aug-2025 at 12:51:52 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
+    <p>Report generated on 24-Aug-2025 at 08:08:14 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
     <h2>Summary</h2>
-    <p>0 tests ran in 1.40 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">0 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>17 tests ran in 13.41 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">17 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -452,4 +452,192 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
           <th class="sortable" col="duration">Duration</th>
           <th class="sortable links" col="links">Links</th></tr>
         <tr hidden="true" id="not-found-message">
-          <th colspan="4">No results found. Try to check the filters</th></tr></thead></table></body></html>
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[valid_token]</td>
+          <td class="col-duration">0.59</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log setup------------------------------- <br/>INFO     conftest:conftest.py:14 Setting up report directory, cleaning if necessary<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[empty_token]</td>
+          <td class="col-duration">0.99</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[whitespace_token]</td>
+          <td class="col-duration">0.73</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[none_token]</td>
+          <td class="col-duration">0.60</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[special_symbols_token]</td>
+          <td class="col-duration">0.59</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[latin_special_symbols_token]</td>
+          <td class="col-duration">0.51</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[latin_accented_characters_token]</td>
+          <td class="col-duration">0.62</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[boolean_token]</td>
+          <td class="col-duration">0.61</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[numeric_token]</td>
+          <td class="col-duration">0.56</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[datetime_object_token]</td>
+          <td class="col-duration">0.57</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[min_length_token]</td>
+          <td class="col-duration">0.52</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[long_token]</td>
+          <td class="col-duration">0.62</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[extra_long_token]</td>
+          <td class="col-duration">0.83</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+WARNING  biz.contacts:contacts.py:22 Response is not in JSON format. status_code=400, contentType=text/html<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[xss_injection_token]</td>
+          <td class="col-duration">0.75</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[sql_injection_token]</td>
+          <td class="col-duration">0.62</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[template_injection_token]</td>
+          <td class="col-duration">0.62</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">case/api/test_api_contacts.py::test_get_contacts[expired_jwt_token]</td>
+          <td class="col-duration">0.69</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema<br/></div></td></tr></tbody></table></body></html>

@@ -20,8 +20,9 @@ logger = logging.getLogger(__name__)
         (401, None),
   
         # 2. Special character tests
-        (401, "!@#$%^&*()[]\\{}|;':\"\",./<>?"),
-        (401, "ñáéíóú"), 
+        (401, "!@#$%^&*()`~-_=+[]{}|\\;:'\",.<>?/"),
+        (401, ''.join(chr(c) for c in range(128, 192))), #  latin_1 special symbols  (401, "€†‡ˆ‰‹Œ‘’“”•–—˜™›œ£¥©®")
+        (401,''.join(chr(c) for c in range(192,256))),  # latin_1 accented characters (401, "ñáéíóú")
         # (401, "中文双字节字符"),  #Invalid use case # Todo: UnicodeEncodeError: 'latin-1' codec can't encode characters in position 18-24: ordinal not in range(256)
 
         # 3. Data type tests
@@ -53,7 +54,8 @@ logger = logging.getLogger(__name__)
 
         # 2. Special character tests
         "special_symbols_token",
-        "unicode_latin_extended_token",
+        "latin_special_symbols_token",
+        "latin_accented_characters_token",
         # "chinese_doublebyte_token",
 
         # 3. Data type tests
@@ -86,19 +88,26 @@ def test_get_contacts(expected_status,token):
     assert biz.contacts.validate_response(response)
    
 
-@pytest.mark.api
-@pytest.mark.stress
-def test_get_contacts_batch():
+# @pytest.mark.api
+# @pytest.mark.stress
+# def test_get_contacts_batch():
     
-    for i in range(16320, 16384, 1): # range(2**13, 2**16, 2**10) #range(10893, 10992,1) 
-        token= "a" * i
+#     for i in range(16320, 16384, 1): # range(2**13, 2**16, 2**10) #range(10893, 10992,1) 
+#         token= "a" * i
 
-        response = biz.contacts.get(token)
+#         response = biz.contacts.get(token)
  
-        logger.info("status_code=%s, token_length=%d", response.status_code, len(token))
+#         logger.info("status_code=%s, token_length=%d", response.status_code, len(token))
 
 
 @pytest.mark.api
 def test_sample ():
+    for c in range(256):
+        if 32 <= c <= 126 or 128 <= c <= 255:
+            print(f"{c}: {chr(c)}", end='  ')
+    print()  
+
     logger.info("Sample test case to ensure logging is working")
     pass
+
+

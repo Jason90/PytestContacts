@@ -44,7 +44,6 @@
 + AOP Logger by Decorator
 + Contacts CRUD, org ,Paging
 + Read test data from database
-+ Determine which schema to read based on URL + CRUD + order( use parametrize)
 + Web test by Selenium 
 + App test by Appum 
 + Screen capture, pic and video

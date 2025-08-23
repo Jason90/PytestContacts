@@ -1,2 +1,55 @@
-INFO     biz.token:token.py:26 New token obtained, will expire at 2025-08-23 12:51:52.772458
+INFO     biz.token:token.py:26 New token obtained, will expire at 2025-08-25 08:08:03.293125
+INFO     conftest:conftest.py:14 Setting up report directory, cleaning if necessary
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+WARNING  biz.contacts:contacts.py:22 Response is not in JSON format. status_code=400, contentType=text/html
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
+INFO     test_api_contacts:test_api_contacts.py:81 Step 1: Make the GET request to fetch contacts
+INFO     test_api_contacts:test_api_contacts.py:84 Step 2: Validate the response status code
+INFO     test_api_contacts:test_api_contacts.py:87 Step 3: Validate the JSON structure against the schema
 INFO     conftest:conftest.py:25 Session finished, preparing to send email with report

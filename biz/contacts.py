@@ -1,6 +1,5 @@
 
-import requests
-from util import json_util
+from util import http_util, json_util
 from config import CONTACTS_URL, HTTP_TIMEOUT
 import logging
 
@@ -8,10 +7,7 @@ logger=logging.getLogger(__name__)
 
 # Get contacts from the API using the provided token.
 def get(token):
-    headers = {
-        "Authorization": f"Bearer {token}"
-    }
-    response = requests.get(CONTACTS_URL, headers=headers, timeout=HTTP_TIMEOUT)
+    response = http_util.get(CONTACTS_URL, headers=http_util.generate_header(token), timeout=HTTP_TIMEOUT)
     
     return response
 
