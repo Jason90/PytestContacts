@@ -1,12 +1,13 @@
-from datetime import datetime
 import sys
 import biz.token
 import biz.contacts
 import pytest
-import logging
+from datetime import datetime
+from util.log_util import LoggerFactory
 
-logger = logging.getLogger(__name__)
+log = LoggerFactory.get_log_aspect()
 
+@log.log_method()
 @pytest.mark.security
 @pytest.mark.api
 @pytest.mark.parametrize("expected_status,token", 
@@ -78,13 +79,13 @@ logger = logging.getLogger(__name__)
     ]            
 )
 def test_get_contacts(expected_status,token):
-    logger.info("Step 1: Make the GET request to fetch contacts")
+    log.logger.info("Step 1: Make the GET request to fetch contacts")
     response = biz.contacts.get(token)
  
-    logger.info("Step 2: Validate the response status code")
+    log.logger.info("Step 2: Validate the response status code")
     assert response.status_code == expected_status
     
-    logger.info("Step 3: Validate the JSON structure against the schema")
+    log.logger.info("Step 3: Validate the JSON structure against the schema")
     assert biz.contacts.validate_response(response)
    
 
@@ -97,17 +98,21 @@ def test_get_contacts(expected_status,token):
 
 #         response = biz.contacts.get(token)
  
-#         logger.info("status_code=%s, token_length=%d", response.status_code, len(token))
+#         log.logger.info("status_code=%s, token_length=%d", response.status_code, len(token))
 
 
+
+@log.log_method()
 @pytest.mark.api
 def test_sample ():
+    log.logger.info("Step 1")
     for c in range(256):
         if 32 <= c <= 126 or 128 <= c <= 255:
-            print(f"{c}: {chr(c)}", end='  ')
-    print()  
+            # print(f"Character: {chr(c)} (Code: {c})")
+            log.logger.info(f"Character: {chr(c)} (Code: {c})")
 
-    logger.info("Sample test case to ensure logging is working")
+    log.logger.info("Step 2")
+    
     pass
 
 

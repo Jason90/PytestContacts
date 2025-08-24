@@ -1,25 +1,28 @@
-from abc import ABC, abstractmethod
+import os
 import time
+import inspect
 from functools import wraps
 from typing import Callable, Any
+from abc import ABC, abstractmethod
+from util import re_util
 
 
 # 1. Logger interface (abstraction)
 class LoggerInterface(ABC):
     @abstractmethod
-    def debug(self, message: str):
+    def debug(self, message: str, *args: Any): 
         pass
 
     @abstractmethod
-    def info(self, message: str):
+    def info(self, message: str, *args: Any):
         pass
 
     @abstractmethod
-    def warning(self, message: str):
+    def warning(self, message: str, *args: Any):
         pass
 
     @abstractmethod
-    def error(self, message: str, exc_info: bool = False):
+    def error(self, message: str, *args: Any, exc_info: bool = False): 
         pass
 
 
@@ -29,17 +32,25 @@ class StdLogger(LoggerInterface):
         import logging
         self.logger = logging.getLogger(name)
 
-    def debug(self, message: str):
-        self.logger.debug(message)
+    def debug(self, message: str, *args: Any):
+        formatted_msg = message % args if args and "%" in message else message
+        cleaned_msg = re_util.clean_invalid_chars(formatted_msg)
+        self.logger.debug(cleaned_msg)
 
-    def info(self, message: str):
-        self.logger.info(message)
+    def info(self, message: str, *args: Any):
+        formatted_msg = message % args if args and "%" in message else message
+        cleaned_msg = re_util.clean_invalid_chars(formatted_msg)
+        self.logger.info(cleaned_msg)
 
-    def warning(self, message: str):
-        self.logger.warning(message)
+    def warning(self, message: str, *args: Any):
+        formatted_msg = message % args if args and "%" in message else message
+        cleaned_msg = re_util.clean_invalid_chars(formatted_msg)
+        self.logger.warning(cleaned_msg)
 
-    def error(self, message: str, exc_info: bool = False):
-        self.logger.error(message, exc_info=exc_info)
+    def error(self, message: str, *args: Any, exc_info: bool = False):
+        formatted_msg = message % args if args and "%" in message else message
+        cleaned_msg = re_util.clean_invalid_chars(formatted_msg)
+        self.logger.error(cleaned_msg, exc_info=exc_info)
 
 
 # 3. Log aspect implementation
@@ -52,8 +63,15 @@ class LogAspect:
         def decorator(func: Callable) -> Callable:
             @wraps(func)
             def wrapper(*args: Any, **kwargs: Any) -> Any:
-                # Get method info
-                class_name = args[0].__class__.__name__ if args else "UnknownClass"
+                # Get method/function info - improved version
+                if args:
+                    # For class methods: get class name from first argument (self/cls)
+                    class_name = args[0].__class__.__name__
+                else:
+                    # For top-level functions: use module name instead of class name
+                    module_name = func.__module__
+                    class_name = module_name.split('.')[-1]  # Get last part of module name
+                    
                 method_name = func.__name__
                 full_desc = description if description else f"{class_name}.{method_name}"
 
@@ -94,7 +112,26 @@ class LoggerFactory:
         return StdLogger(name)
 
     @staticmethod
-    def get_log_aspect(name: str) -> LogAspect:
+    def get_log_aspect(name: str = None) -> LogAspect:
+        if name is None:
+            # Obtain the file name of the caller (without extension)
+            frame = inspect.stack()[1]
+            module = inspect.getmodule(frame[0])
+            if module and hasattr(module, '__file__'):
+                # Get the root directory (assuming there is a pytest.ini file in the root directory)
+                file_path = os.path.abspath(module.__file__)
+                current = file_path
+                while True:
+                    parent = os.path.dirname(current)
+                    if os.path.exists(os.path.join(parent, "pytest.ini")):
+                        name = os.path.basename(parent)
+                        break
+                    if parent == current:
+                        name = "unknown"
+                        break
+                    current = parent
+            else:
+                name = "unknown"
         logger = LoggerFactory.get_logger(name)
         return LogAspect(logger)
     

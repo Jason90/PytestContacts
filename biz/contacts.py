@@ -1,9 +1,9 @@
 
 from util import http_util, json_util
 from config import CONTACTS_URL, HTTP_TIMEOUT
-import logging
+from util.log_util import LoggerFactory
 
-logger=logging.getLogger(__name__)
+log = LoggerFactory.get_log_aspect()
 
 # Get contacts from the API using the provided token.
 def get(token):
@@ -19,7 +19,7 @@ def validate_response(response):
         
         return json_util.validate_json(response.json(), schema)
     else:
-        logger.warning("Response is not in JSON format. status_code=%s, contentType=%s",response.status_code,contentType)
-        logger.debug("Response text:", response.text)
+        log.logger.warning("Response is not in JSON format. status_code=%s, contentType=%s",response.status_code,contentType)
+        log.logger.debug("Response text:", response.text)
         
         return True

@@ -1,8 +1,8 @@
 import requests
 from config import HTTP_TIMEOUT
-import logging
+from util.log_util import LoggerFactory
 
-logger = logging.getLogger(__name__)
+log = LoggerFactory.get_log_aspect()
 
 def generate_header(token):
     """
@@ -25,10 +25,10 @@ def get(url, params=None, headers=None, timeout=HTTP_TIMEOUT):
     :return: The response object from the GET request.
     """
     
-    logger.debug("Making GET request to %s with params: %s and headers: %s", url, params, headers)
+    log.logger.debug("Making GET request to %s with params: %s and headers: %s", url, params, headers)
     response = requests.get(url, params=params, headers=headers,timeout=timeout)
     
-    logger.debug("Response status code: %s, headers: %s, content: %s", response.status_code, response.headers, response.content)
+    log.logger.debug("Response status code: %s, headers: %s, content: %s", response.status_code, response.headers, response.content)
     
     return response
 
@@ -42,11 +42,11 @@ def post(url, data=None, headers=None, timeout=HTTP_TIMEOUT):
     :return: The response object from the POST request.
     """
     
-    logger.debug("Making POST request to %s with data: %s and headers: %s", url, data, headers)
+    log.logger.debug("Making POST request to %s with data: %s and headers: %s", url, data, headers)
     
     response = requests.post(url, json=data, headers=headers, timeout=timeout)
     
-    logger.debug("Response status code: %s, headers: %s, content: %s", response.status_code, response.headers, response.content)
+    log.logger.debug("Response status code: %s, headers: %s, content: %s", response.status_code, response.headers, response.content)
     
     return response 
 
@@ -60,11 +60,11 @@ def put(url, data=None, headers=None, timeout=HTTP_TIMEOUT):
     :return: The response object from the PUT request.
     """
     
-    logger.debug("Making PUT request to %s with data: %s and headers: %s", url, data, headers)
+    log.logger.debug("Making PUT request to %s with data: %s and headers: %s", url, data, headers)
     
     response = requests.put(url, json=data, headers=headers, timeout=timeout)
     
-    logger.debug("Response status code: %s, headers: %s, content: %s", response.status_code, response.headers, response.content)
+    log.logger.debug("Response status code: %s, headers: %s, content: %s", response.status_code, response.headers, response.content)
     
     return response 
 
@@ -77,10 +77,10 @@ def delete(url, headers=None, timeout=HTTP_TIMEOUT):
     :return: The response object from the DELETE request.
     """
     
-    logger.debug("Making DELETE request to %s with headers: %s", url, headers)
+    log.logger.debug("Making DELETE request to %s with headers: %s", url, headers)
     
     response = requests.delete(url, headers=headers, timeout=timeout)
     
-    logger.debug("Response status code: %s, headers: %s, content: %s", response.status_code, response.headers, response.content)
+    log.logger.debug("Response status code: %s, headers: %s, content: %s", response.status_code, response.headers, response.content)
     
     return response 
