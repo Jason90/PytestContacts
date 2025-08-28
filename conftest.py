@@ -2,9 +2,7 @@ import os
 import pytest
 from util import file_util
 from util.email_util import send_email
-from util.log_util import LoggerFactory
-
-log = LoggerFactory.get_log_aspect()
+from util.log_util import log
 
 # Global variable to store report path (shared between fixture and hook function)
 REPORT_PATH = os.path.join("doc", "report", "html", "test_report.html")
@@ -52,11 +50,6 @@ def pytest_sessionfinish(session):
 
 def pytest_addoption(parser):
     parser.addini("send_report", "Send report after tests", default="false")
-
-
-
-
-
 
 
 

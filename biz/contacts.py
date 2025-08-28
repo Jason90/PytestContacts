@@ -1,9 +1,7 @@
 
 from util import http_util, json_util
 from config import CONTACTS_URL, HTTP_TIMEOUT
-from util.log_util import LoggerFactory
-
-log = LoggerFactory.get_log_aspect()
+from util.log_util import log
 
 # Get contacts from the API using the provided token.
 def get(token):

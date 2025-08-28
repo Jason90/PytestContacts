@@ -1,8 +1,6 @@
 import requests
 from config import HTTP_TIMEOUT
-from util.log_util import LoggerFactory
-
-log = LoggerFactory.get_log_aspect()
+from util.log_util import log
 
 def generate_header(token):
     """

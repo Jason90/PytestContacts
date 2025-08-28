@@ -135,3 +135,5 @@ class LoggerFactory:
         logger = LoggerFactory.get_logger(name)
         return LogAspect(logger)
     
+#default logger    
+log=LoggerFactory.get_log_aspect()

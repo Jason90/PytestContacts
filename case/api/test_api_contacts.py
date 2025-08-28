@@ -3,9 +3,7 @@ import biz.token
 import biz.contacts
 import pytest
 from datetime import datetime
-from util.log_util import LoggerFactory
-
-log = LoggerFactory.get_log_aspect()
+from util.log_util import log
 
 @log.log_method()
 @pytest.mark.security
@@ -106,11 +104,6 @@ def test_get_contacts(expected_status,token):
 @pytest.mark.api
 def test_sample ():
     log.logger.info("Step 1")
-    for c in range(256):
-        if 32 <= c <= 126 or 128 <= c <= 255:
-            # print(f"Character: {chr(c)} (Code: {c})")
-            log.logger.info(f"Character: {chr(c)} (Code: {c})")
-
     log.logger.info("Step 2")
     
     pass

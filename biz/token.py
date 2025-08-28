@@ -1,9 +1,7 @@
 from datetime import datetime, timedelta
 from config import TOKEN_URL, HTTP_TIMEOUT, PAYLOAD
 from util import http_util
-from util.log_util import LoggerFactory
-
-log = LoggerFactory.get_log_aspect()
+from util.log_util import log
 
 # Cache for the token to avoid frequent requests
 _token_cache = {
