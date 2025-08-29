@@ -99,6 +99,85 @@ def test_get_contacts(expected_status,token):
 #         log.logger.info("status_code=%s, token_length=%d", response.status_code, len(token))
 
 
+@log.log_method()
+@pytest.mark.security
+@pytest.mark.api
+@pytest.mark.parametrize("expected_status,id", 
+    [
+        # 0. Valid & Invalid user id
+        (200, "test-123"),
+        (404, "test-1"), #  disable or deleted user id
+        
+        # 1. Null/missing value tests
+        (404, ""),
+        (404, " "),
+        (404, None),
+          
+        # 2. Special character tests
+        (404, "!@#$%^&*()`~-_=+[]{}|\\;:'\",.<>?/"),
+        (404, ''.join(chr(c) for c in range(128, 256))), #  latin_1 special symbols  (401, "€†‡ˆ‰‹Œ‘’“”•–—˜™›œ£¥©®")
+        (404,"中文双字节字符"), 
+
+        # 3. Data type tests
+        (404, True),
+        (404, 12345),
+        (404, datetime.now()),
+  
+        # 4. Length boundary tests
+        (404, "a" * 1),  
+        (404, "a" * 10893),     
+        (414, "a" * (2**16+1)), #Request-URI Too Long
+    
+        # 5. Security attack tests
+        (404, "<script>alert('XSS')</script>"), 
+        (404, "' OR '1'='1"),    
+        (404, "{{7*7}}"),
+    ],
+    ids=[
+        # 0. Valid & Invalid test
+        "valid_user",
+        "Invalid_user", 
+        
+        # 1. Null/missing value tests
+        "empty",
+        "whitespace",
+        "none",
+        
+        # 2. Special character tests
+        "special_symbols",
+        "latin_special_symbols",
+        "chinese_doublebyte",
+
+        # 3. Data type tests
+        "boolean",
+        "numeric",
+        "datetime_object",
+
+        # 4. Length boundary tests
+        "min_length",
+        "long",
+        "extra_long",
+
+        # 5. Security attack tests
+        "xss_injection",
+        "sql_injection",
+        "template_injection",
+    ]
+)
+def test_get_contact(expected_status,id):
+    log.logger.info("Step 1: Get the authentication token")
+    token= biz.token.get()
+    
+    log.logger.info("Step 2: Make the GET request to fetch contacts")
+    response = biz.contacts.get(token,id)
+ 
+    log.logger.info("Step 3: Validate the response status code")
+    assert response.status_code == expected_status
+    
+    log.logger.info("Step 4: Validate the JSON structure against the schema")
+    assert biz.contacts.validate_response(response)
+    
+
 
 @log.log_method()
 @pytest.mark.api

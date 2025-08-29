@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Contact Information",
+  "description": "Schema for validating contact details",
+  "required": [
+    "id",
+    "firstName",
+    "lastName",
+    "email",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the contact",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "First name of the contact",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Last name of the contact",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address of the contact",
+      "format": "email"
+    },
+    "phoneNumber": {
+      "type": "string",
+      "description": "Phone number of the contact",
+      "pattern": "^\\+?[0-9\\-\\(\\)\\s]+$"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company the contact works for",
+      "maxLength": 100
+    },
+    "title": {
+      "type": "string",
+      "description": "Job title of the contact",
+      "maxLength": 100
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "Timestamp when the contact was created",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "Timestamp when the contact was last updated",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

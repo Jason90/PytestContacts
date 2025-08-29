@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Contact Not Found Response",
+  "description": "Schema for 'Contact not found' error response",
+  "required": [
+    "message",
+    "contactId"
+  ],
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "Error message indicating the contact was not found",
+      "enum": ["Contact not found"]
+    },
+    "contactId": {
+      "type": "string",
+      "description": "The contact ID that was not found (may contain URL-encoded characters)",
+      "minLength": 0
+    }
+  },
+  "additionalProperties": false
+}
+    
