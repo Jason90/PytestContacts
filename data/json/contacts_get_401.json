@@ -1,0 +1,4 @@
+{
+    "message": "Unauthorized",
+    "error": "Valid JWT token required"
+}

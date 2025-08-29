@@ -1,10 +1,7 @@
-import pytest
-import requests
 from datetime import datetime, timedelta
 from config import TOKEN_URL, HTTP_TIMEOUT, PAYLOAD
-import logging
-
-logger = logging.getLogger(__name__)
+from util import http_util
+from util.log_util import log
 
 # Cache for the token to avoid frequent requests
 _token_cache = {
@@ -23,13 +20,13 @@ def get():
         new_token_data = _get_new()
         _token_cache["token"] = new_token_data["token"]
         _token_cache["expires_at"] = new_token_data["expires_at"]
-        logger.info("New token obtained, will expire at %s", _token_cache["expires_at"])
+        log.logger.info("New token obtained, will expire at %s", _token_cache["expires_at"])
     
     return _token_cache["token"]
 
 # Get new token from the API
 def _get_new():
-    response = requests.post(TOKEN_URL, json=PAYLOAD, timeout=HTTP_TIMEOUT)
+    response = http_util.post(TOKEN_URL, data=PAYLOAD, timeout=HTTP_TIMEOUT)
     
     response.raise_for_status()
     auth_data = response.json()

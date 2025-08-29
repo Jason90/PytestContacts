@@ -1,6 +1,8 @@
 HTTP_TIMEOUT=10
-TOKEN_URL = "https://qv77wuaaytru4gzchjj7bhewhq0ukysc.lambda-url.us-west-2.on.aws/auth"
-CONTACTS_URL = "https://qv77wuaaytru4gzchjj7bhewhq0ukysc.lambda-url.us-west-2.on.aws/contacts"
+BASE_URL="https://qv77wuaaytru4gzchjj7bhewhq0ukysc.lambda-url.us-west-2.on.aws/"
+# BASE_URL="https://qv77wuaaytru4gzchjj7bhewhq0ukysc.lambda-url.us-west-2.on.aws/prod/" 
+TOKEN_URL = f"{BASE_URL}auth"
+CONTACTS_URL = f"{BASE_URL}contacts"
 
 PAYLOAD = {"apiKey": "test-key-001"}
 

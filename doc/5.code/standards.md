@@ -41,12 +41,11 @@ Reusable, Configurable, Extensible      ==>  Maintainable
     B1-->C2(Biz logic & Test case)
     B1-->C3(Biz logic & Test data)
     B1-->C4(Biz logic & Utility)
-    B1-->C5(Project Structure)
 
     C2-->D2(Three - Tier Architecture)
     C3-->D2
     C4-->D2
-    C5-->D2
+
 
     A1(Principles)-->B2(Open-Closed Principle)
     B2-->C1(Open for extension but closed for modification)

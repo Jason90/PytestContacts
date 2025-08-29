@@ -22,14 +22,14 @@ log_method = log_aspect.log_method
 class ApiService:
     @log_method(description="Get user information")  # Apply log aspect
     def get_user(self, user_id: int):
-        url = f"https://api.example.com/users/{user_id}"
+        url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
         response = requests.get(url, timeout=10)
         response.raise_for_status()
         return response.json()
     
     @log_method(description="Create new user")
     def create_user(self, name: str, email: str):
-        url = "https://api.example.com/users"
+        url = "https://jsonplaceholder.typicode.com/users/"
         data = {"name": name, "email": email}
         response = requests.post(url, json=data, timeout=10)
         response.raise_for_status()
@@ -38,12 +38,12 @@ class ApiService:
 
 # 4. Test cases
 def test_api_service():
-    setup_logging()
+    # setup_logging()
     service = ApiService()
     
     # Call methods with log aspect
     try:
-        user = service.get_user(123)
+        user = service.get_user(1)
         print(f"Fetched user: {user}")
         
         new_user = service.create_user("Test User", "test.user@example.com")
@@ -52,6 +52,6 @@ def test_api_service():
         print(f"Operation failed: {e}")
 
 
-# if __name__ == "__main__":
-#     test_api_service()
+if __name__ == "__main__":
+    test_api_service()
     

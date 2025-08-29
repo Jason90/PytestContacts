@@ -4,6 +4,7 @@ from email.mime.application import MIMEApplication
 from email.mime.text import MIMEText
 from util import file_util
 from config import EMAIL_SMTP_SERVER
+from util.log_util import log
 
 
 def send_email(sender_email, sender_password, receiver_email, subject, body, attachment_path):
@@ -25,14 +26,14 @@ def send_email(sender_email, sender_password, receiver_email, subject, body, att
         server.login(sender_email, sender_password)
         text = msg.as_string()
         server.sendmail(sender_email, receiver_email, text)
-        print(f"Email sent successfully to {receiver_email}")
+        log.logger.info(f"Email sent successfully to {receiver_email}")
     except Exception as e:
-        print(f"Failed to send email: {e}")
+        log.logger.error(f"Failed to send email: {e}")
     finally:
         # Close the server connection
         if server:
             try:
                 server.quit()  
             except Exception as e:
-                print(f"Failed to close the server connection: {e}")
+                log.logger.info(f"Failed to close the server connection: {e}")
                 
