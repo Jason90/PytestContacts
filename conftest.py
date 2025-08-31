@@ -3,6 +3,7 @@ import pytest
 from util import file_util
 from util.email_util import send_email
 from util.log_util import log
+from config import Report_Config
 
 # Global variable to store report path (shared between fixture and hook function)
 REPORT_PATH = os.path.join("doc", "report", "html", "test_report.html")
@@ -21,9 +22,7 @@ def manage_report():
 @pytest.hookimpl(trylast=True) 
 def pytest_sessionfinish(session):
     # Condition 1: Check if email sending is enabled via configuration
-    config: pytest.Config = session.config
-    send_report = config.getini("send_report").lower() == "true"
-    if not send_report:
+    if not Report_Config.SEND_REPORT:
         log.logger.warning("Email sending is disabled via configuration")
         return
     
@@ -48,8 +47,8 @@ def pytest_sessionfinish(session):
     send_email(sender_email, sender_password, receiver_email, subject, body, REPORT_PATH)
 
 
-def pytest_addoption(parser):
-    parser.addini("send_report", "Send report after tests", default="false")
+# def pytest_addoption(parser):
+#     parser.addini("send_report", "Send report after tests", default="false")
 
 
 

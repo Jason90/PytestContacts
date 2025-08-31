@@ -3,7 +3,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 from email.mime.text import MIMEText
 from util import file_util
-from config import EMAIL_SMTP_SERVER
+from config import Report_Config
 from util.log_util import log
 
 
@@ -21,7 +21,7 @@ def send_email(sender_email, sender_password, receiver_email, subject, body, att
     msg.attach(part)
     # Connect to SMTP server
     try:
-        server = smtplib.SMTP(EMAIL_SMTP_SERVER, 25)
+        server = smtplib.SMTP(Report_Config.EMAIL_SMTP_SERVER, 25)
         server.starttls()
         server.login(sender_email, sender_password)
         text = msg.as_string()

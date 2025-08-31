@@ -1,6 +1,12 @@
 // {type:class}
-[case||test_abc()]-.->[business|URL|get();post();put();delete()]
 
-[business]-.->[util||log;   json   ;file]
+[case|smoke;priority;|test_abc()]->[business|web;api|login();validate()]
 
-[business]-.->[data||json;   xml   ;  db]
+[business]->[core|pages;apis]
+[core]<>-*>[page|url;elements|navigate();find_element();click_element();input_text()]
+
+[core]<>-*>[api|url;timeout|get();post();put();delete()]
+
+// [business]-.->[util|format;encoding;|log;json;file;email]
+
+// [business]-.->[data|type;path|json;schema;xml;database;]
