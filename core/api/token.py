@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from config import TOKEN_URL, HTTP_TIMEOUT, PAYLOAD
+from config import API_Config
 from util import http_util
 from util.log_util import log
 
@@ -26,7 +26,7 @@ def get():
 
 # Get new token from the API
 def _get_new():
-    response = http_util.post(TOKEN_URL, data=PAYLOAD, timeout=HTTP_TIMEOUT)
+    response = http_util.post(API_Config.API_TOKEN_URL, data=API_Config.PAYLOAD, timeout=API_Config.HTTP_TIMEOUT)
     
     response.raise_for_status()
     auth_data = response.json()

@@ -1,9 +1,8 @@
-import sys
-import biz.token
-import biz.contacts
 import pytest
 from datetime import datetime
 from util.log_util import log
+import biz.api
+
 
 @log.log_method()
 @pytest.mark.security
@@ -11,7 +10,7 @@ from util.log_util import log
 @pytest.mark.parametrize("expected_status,token", 
     [
         # 0. Valid token test
-        (200, biz.token.get()),
+        (200, biz.api.token.get()),    
         
         # 1. Null/missing value tests
         (401, ""),
@@ -76,27 +75,24 @@ from util.log_util import log
         "expired_jwt_token"
     ]            
 )
-def test_get_contacts(expected_status,token):
+def test_get_contacts(expected_status,token):  
     log.logger.info("Step 1: Make the GET request to fetch contacts")
-    response = biz.contacts.get(token)
+    response = biz.api.contact.get(token)
  
     log.logger.info("Step 2: Validate the response status code")
     assert response.status_code == expected_status
     
     log.logger.info("Step 3: Validate the JSON structure against the schema")
-    assert biz.contacts.validate_response(response)
+    assert biz.api.contact.validate_response(response)
    
 
-# @pytest.mark.api
-# @pytest.mark.stress
-# def test_get_contacts_batch():
-    
-#     for i in range(16320, 16384, 1): # range(2**13, 2**16, 2**10) #range(10893, 10992,1) 
-#         token= "a" * i
-
-#         response = biz.contacts.get(token)
- 
-#         log.logger.info("status_code=%s, token_length=%d", response.status_code, len(token))
+@pytest.mark.api
+@pytest.mark.stress
+def test_get_contacts_batch():
+    for i in range(1, 10, 1): # range(2**13, 2**16, 2**10) #range(10893, 10992,1) 
+        token= "a" * i
+        response = biz.contacts.get(token)
+        log.logger.info("status_code=%s, token_length=%d", response.status_code, len(token))
 
 
 @log.log_method()
@@ -166,16 +162,16 @@ def test_get_contacts(expected_status,token):
 )
 def test_get_contact(expected_status,id):
     log.logger.info("Step 1: Get the authentication token")
-    token= biz.token.get()
+    token= biz.api.token.get()
     
     log.logger.info("Step 2: Make the GET request to fetch contacts")
-    response = biz.contacts.get(token,id)
+    response = biz.api.contact.get(token,id)
  
     log.logger.info("Step 3: Validate the response status code")
     assert response.status_code == expected_status
     
     log.logger.info("Step 4: Validate the JSON structure against the schema")
-    assert biz.contacts.validate_response(response)
+    assert biz.api.contact.validate_response(response)
     
 
 

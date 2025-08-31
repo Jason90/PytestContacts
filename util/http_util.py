@@ -1,5 +1,5 @@
 import requests
-from config import HTTP_TIMEOUT
+from config import API_Config
 from util.log_util import log
 
 def generate_header(token):
@@ -13,7 +13,7 @@ def generate_header(token):
         "Authorization": f"Bearer {token}"
     }
 
-def get(url, params=None, headers=None, timeout=HTTP_TIMEOUT):
+def get(url, params=None, headers=None, timeout=API_Config.HTTP_TIMEOUT):
     """
     Make a GET request to the specified URL with optional parameters and headers.
     
@@ -30,7 +30,7 @@ def get(url, params=None, headers=None, timeout=HTTP_TIMEOUT):
     
     return response
 
-def post(url, data=None, headers=None, timeout=HTTP_TIMEOUT):
+def post(url, data=None, headers=None, timeout=API_Config.HTTP_TIMEOUT):
     """
     Make a POST request to the specified URL with optional data and headers.
     
@@ -48,7 +48,7 @@ def post(url, data=None, headers=None, timeout=HTTP_TIMEOUT):
     
     return response 
 
-def put(url, data=None, headers=None, timeout=HTTP_TIMEOUT):
+def put(url, data=None, headers=None, timeout=API_Config.HTTP_TIMEOUT):
     """
     Make a PUT request to the specified URL with optional data and headers.
     
@@ -66,7 +66,7 @@ def put(url, data=None, headers=None, timeout=HTTP_TIMEOUT):
     
     return response 
 
-def delete(url, headers=None, timeout=HTTP_TIMEOUT):
+def delete(url, headers=None, timeout=API_Config.HTTP_TIMEOUT):
     """
     Make a DELETE request to the specified URL with optional headers.
     
